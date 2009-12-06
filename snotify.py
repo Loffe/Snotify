@@ -13,7 +13,7 @@ s = wnck.screen_get_default()
 connected = False
 commercials = ["mount forever", "bilfri", "this city" , "kanal 5", "spotify - spotify", "rosa bandet",
 "share my playlists", "warner music", "landsting", "meet n greet", "universal music", "lion alpin",
-"svenska spel", "sony pictures", "emi sweden", "sony pictures", "sony music", "activision"]
+"svenska spel", "sony pictures", "emi sweden", "sony pictures", "sony music", "activision", "virgin/emi"]
 
 pynotify.init("Spotify notification test")
 
