@@ -3,17 +3,18 @@
 import wnck, gtk, gobject
 import pynotify
 import subprocess
-
+sink_index = 0
 def mute():
-    p = subprocess.Popen('echo set-sink-mute 0 1 | pacmd > /dev/null', shell=True)
+    p = subprocess.Popen('echo set-sink-mute %d 1 | pacmd > /dev/null' % sink_index, shell=True)
 def unmute():
-    p = subprocess.Popen('echo set-sink-mute 0 0 | pacmd > /dev/null', shell=True)
+    p = subprocess.Popen('echo set-sink-mute %d 0 | pacmd > /dev/null' % sink_index, shell=True)
 
 s = wnck.screen_get_default()
 connected = False
 commercials = ["mount forever", "bilfri", "this city" , "kanal 5", "spotify - spotify", "rosa bandet",
 "share my playlists", "warner music", "landsting", "meet n greet", "universal music", "lion alpin",
-"svenska spel", "sony pictures", "emi sweden", "sony pictures", "sony music", "activision", "virgin/emi"]
+"svenska spel", "sony pictures", "emi sweden", "sony pictures", "sony music", "activision", "virgin/emi",
+"luger/live nation", "netonnet", "siba", "mbo"]
 
 pynotify.init("Spotify notification test")
 
@@ -21,6 +22,8 @@ def is_commercial(text):
     for comm_text in commercials:
         if comm_text in text.lower():
             return True
+    if "EMI" in text:
+        return True
     return False
 
 def name_changed(window):
